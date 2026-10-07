@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DON | Freelance Video Director</title>
+  <meta name="description" content="DON is a freelance video director for films, music videos and commercials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121416;
+      --surface: #1a1d20;
+      --line: #2a2e33;
+      --text: #efece6;
+      --muted: #9a9ea5;
+      --accent: #d9b26f;
+      --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(1.25rem, 5vw, 4rem);
+      --max: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    h1, h2 { margin: 0; line-height: 1; }
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      font-stretch: 110%;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    section { padding: clamp(4.5rem, 10vw, 8rem) 0; }
+    section + section { border-top: 1px solid var(--line); }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(18, 20, 22, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar { display: flex; justify-content: space-between; align-items: center; height: 4rem; }
+    .logo { font-weight: 900; font-stretch: 125%; font-size: 1.25rem; letter-spacing: 0.02em; }
+    nav { display: flex; gap: clamp(1rem, 3vw, 2rem); font-size: 0.95rem; color: var(--muted); }
+    nav a { transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+
+    /* Hero: oversized name, quiet supporting text */
+    .hero { padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 9vw, 7rem); }
+    .name {
+      font-size: clamp(7rem, 34vw, 26rem);
+      font-weight: 900;
+      font-stretch: 125%;
+      letter-spacing: -0.04em;
+      line-height: 0.8;
+      margin-left: -0.04em;
+    }
+    .hero-text { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: end; margin-top: clamp(2rem, 5vw, 4rem); }
+    .hero h1 { font-size: clamp(1.6rem, 3.6vw, 2.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; max-width: 18ch; }
+    .hero p { color: var(--muted); margin: 0 0 1.5rem; max-width: 34ch; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      color: var(--accent);
+      font: 600 1rem var(--font);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+    .about h2 { margin-bottom: 0; }
+    .about p { margin: 0 0 1.25rem; max-width: 60ch; color: #cfcbc3; }
+    .facts { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid var(--line); }
+    .facts li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+    .facts span:first-child { color: var(--muted); }
+    .facts span:last-child { text-align: right; }
+
+    /* Gallery: each placeholder is letterboxed like a film frame */
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+    figure { margin: 0; }
+    figure.wide { grid-column: span 2; }
+    .frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+    }
+    .frame::before, .frame::after {
+      content: "";
+      position: absolute; left: 0; right: 0;
+      height: 12%;
+      background: #000;
+      transition: height 0.35s ease;
+    }
+    .frame::before { top: 0; }
+    .frame::after { bottom: 0; }
+    figure:hover .frame::before, figure:hover .frame::after { height: 0; }
+    figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: 0.75rem; font-size: 0.95rem; color: var(--muted); }
+    figcaption strong { color: var(--text); font-weight: 600; }
+
+    /* Contact */
+    .contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 6vw, 6rem); }
+    .contact p { color: var(--muted); max-width: 32ch; margin: 0 0 1.25rem; }
+    .contact .mail { color: var(--accent); border-bottom: 1px solid currentColor; word-break: break-all; }
+    form { display: grid; gap: 1.25rem; }
+    label { display: grid; gap: 0.4rem; font-size: 0.95rem; color: var(--muted); }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--text);
+      font: inherit;
+    }
+    textarea { min-height: 9rem; resize: vertical; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    form .btn { justify-self: start; }
+
+    footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .hero-text, .about, .contact { grid-template-columns: 1fr; }
+    }
+
+    /* Phone */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      figure.wide { grid-column: auto; }
+      form .btn { justify-self: stretch; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap bar">
+      <a href="#top" class="logo">DON</a>
+      <nav aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="name" aria-hidden="true">DON</div>
+        <div class="hero-text">
+          <h1>Cinematic stories, directed with intent.</h1>
+          <div>
+            <p>Freelance video director for films, music videos and commercials.</p>
+            <a href="#work" class="btn">Watch the work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="wrap about">
+        <h2>About me</h2>
+        <div>
+          <p>I'm DON, a freelance video director. I work with artists, brands and filmmakers to turn a rough idea into a finished film, handling the vision, the shoot and the final cut.</p>
+          <p>I keep sets calm and crews small. I care about strong framing, honest performances and sound that carries the scene. Every project starts with a conversation about what you want the audience to feel.</p>
+          <ul class="facts">
+            <li><span>Services</span><span>Directing, treatments, shoot planning</span></li>
+            <li><span>Formats</span><span>Short film, music video, commercial</span></li>
+            <li><span>Availability</span><span>Taking bookings</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="work">
+      <div class="wrap">
+        <h2>Selected work</h2>
+        <div class="grid">
+
+          <!-- To use a real image, replace the .frame div with:
+               <img src="your-photo.jpg" alt="Description" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;"> -->
+
+          <figure class="wide">
+            <div class="frame" style="--c1:#3b4a63; --c2:#10151d;"></div>
+            <figcaption><strong>Midnight Signal</strong><span>Short film</span></figcaption>
+          </figure>
+
+          <figure>
+            <div class="frame" style="--c1:#5a4638; --c2:#1b1410;"></div>
+            <figcaption><strong>Gold Hour</strong><span>Commercial</span></figcaption>
+          </figure>
+
+          <figure>
+            <div class="frame" style="--c1:#37524f; --c2:#101d1b;"></div>
+            <figcaption><strong>Still Water</strong><span>Music video</span></figcaption>
+          </figure>
+
+          <figure>
+            <div class="frame" style="--c1:#4d3d5c; --c2:#171220;"></div>
+            <figcaption><strong>Neon Rain</strong><span>Music video</span></figcaption>
+          </figure>
+
+          <figure>
+            <div class="frame" style="--c1:#5c4a3a; --c2:#1e1711;"></div>
+            <figcaption><strong>The Long Way</strong><span>Documentary</span></figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="wrap contact">
+        <div>
+          <h2>Start a project</h2>
+          <p>Tell me what you're making, when you need it and your rough budget. I'll reply soon.</p>
+          <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
+        </div>
+
+        <!-- Replace the action with a form service URL (e.g. Formspree) to receive messages directly -->
+        <form action="mailto:hello@example.com" method="post" enctype="text/plain">
+          <label>Name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Project type
+            <select name="project">
+              <option>Short film</option>
+              <option>Music video</option>
+              <option>Commercial</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label>Message
+            <textarea name="message" required></textarea>
+          </label>
+          <button type="submit" class="btn">Send message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 DON</span>
+      <span>Freelance video director</span>
+    </div>
+  </footer>
+
+</body>
+</html>
